@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - Negusu Web-based Infographics</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin:0;
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #1829e6; /* Bold blue background */
+}
+
+.login-container {
+    background: #ffd700; /* Golden yellow login window */
+    padding: 50px 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    text-align: center;
+    width: 350px;
+    animation: fadeIn 0.5s;
+    border: 2px solid #ffffff;
+    position: relative;
+}
+
+/* Portal/Profile image */
+.login-container .portal-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 3px solid #3107ec;
+    object-fit: cover;
+    transition: all 0.4s ease;
+}
+
+.login-container .icon {
+    font-size: 50px;
+    color: #3107ec;
+    margin-bottom: 10px;
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+    color:#1829e6;
+    font-size: 1.6rem;
+    line-height: 1.4;
+}
+
+.login-container input {
+    width: 90%;
+    padding: 12px;
+    margin: 12px 0;
+    border-radius: 10px;
+    border: 1px solid rgba(24,41,230,0.5);
+    font-size: 1rem;
+    background: rgba(255,255,255,0.8);
+    color: #1829e6;
+    transition: all 0.4s ease;
+}
+
+.login-container input::placeholder {
+    color: #1829e6;
+}
+
+.login-container input:focus {
+    border: 2px solid #1829e6;
+    background: rgba(255,255,255,1);
+    box-shadow: 0 0 15px rgba(24,41,230,0.5);
+    outline:none;
+    transform: scale(1.02);
+}
+
+.login-container button {
+    background-color: #3107ec;
+    color: #ffffff;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(49,7,236,0.4);
+    font-weight: bold;
+}
+
+.login-container button:hover {
+    background-color:#1829e6;
+    box-shadow: 0 5px 30px rgba(24,41,230,0.6);
+    transform: scale(1.07);
+}
+
+.login-container .footer-link {
+    margin-top: 20px;
+    font-size: 0.9rem;
+}
+
+.login-container .footer-link a {
+    color: #1829e6;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-container .footer-link a:hover {
+    text-decoration: underline;
+}
+
+/* Inline message style */
+.login-message {
+    margin-top: 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    display: none;
+    transition: all 0.5s ease;
+}
+
+.login-message.success {
+    color: green;
+    animation: pulse 1s ease infinite;
+}
+
+.login-message.error {
+    color: red;
+    animation: shake 0.5s ease;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+.portal-animate {
+    animation: bounceGlow 1s ease-in-out;
+}
+
+@keyframes bounceGlow {
+    0%,100% { transform: translateY(0) scale(1); box-shadow: 0 0 10px #3107ec; }
+    50% { transform: translateY(-10px) scale(1.05); box-shadow: 0 0 25px #00ffff; }
+}
+
+@media(max-width:400px){
+    .login-container{
+        width:90%;
+        padding:40px 20px;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="login-container">
+    <!-- Portal image -->
+    <img src="images/negusu.jpg" alt="Portal Image" class="portal-img" id="portalImg">
+    <div class="icon">🔒</div>
+    <h2>Login GEBRMICHAEL,<br>Negusu Web-based Infographics</h2>
+    <input type="text" id="username" placeholder="Username" value="GEBRMICHAEL">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <div class="login-message" id="loginMessage"></div>
+    <div class="footer-link">
+        <a href="index.html">Back to Dashboard</a>
+    </div>
+</div>
+
+<script>
+function login() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const message = document.getElementById('loginMessage');
+    const portalImg = document.getElementById('portalImg');
+
+    // Animate portal image
+    portalImg.classList.remove('portal-animate');
+    void portalImg.offsetWidth; // trigger reflow
+    portalImg.classList.add('portal-animate');
+
+    // Pre-defined credentials
+    const validUsername = "GEBRMICHAEL";
+    const validPassword = "Negusu123";
+
+    if(username === validUsername && password === validPassword) {
+        message.textContent = `Welcome, ${username}! Redirecting...`;
+        message.className = 'login-message success';
+        message.style.display = 'block';
+        setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 1500);
+    } else {
+        message.textContent = 'Invalid username or password. Please try again.';
+        message.className = 'login-message error';
+        message.style.display = 'block';
+    }
+}
+if(username === validUsername && password === validPassword) {
+    // Save login status in localStorage
+    localStorage.setItem('loggedInUser', username);
+
+    message.textContent = `Welcome, ${username}! Redirecting...`;
+    message.className = 'login-message success';
+    message.style.display = 'block';
+    setTimeout(() => {
+        window.location.href = 'index.html';
+    }, 1500);
+
+    function login() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    const validUsername = "GEBRMICHAEL";
+    const validPassword = "Negusu123";
+
+    if(username === validUsername && password === validPassword){
+        localStorage.setItem('loggedInUser', username); // save login
+        alert(`Welcome, ${username}! Redirecting to Home...`);
+        window.location.href = 'index.html'; // redirect
+    } else {
+        alert('Invalid username or password!');
+    }
+}
+}
+</script>
+
+</body>
+
+</html>
