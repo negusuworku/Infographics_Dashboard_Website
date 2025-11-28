@@ -138,3 +138,27 @@ h2 {
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
 }
+.word {
+    opacity: 0;
+    transform: translateY(20px);
+    display: inline-block;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.word.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.lightbox::after {
+    content: "✖";
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+}
+.gallery-container {
+    padding: 15px;
+    gap: 10px;
+}

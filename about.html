@@ -7,8 +7,10 @@
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-     <!-- External CSS -->
+
+    <!-- External CSS -->
     <link rel="stylesheet" href="styles.css">
+
     <style>
         body {
             margin:0;
@@ -100,33 +102,24 @@
         <a href="contact.html">Contact</a>
     </nav>
 
-    <!-- Main Heading -->
     <h1>About the Dashboard</h1>
 
-    <!-- Structured Content -->
     <div class="content-container">
         <h2>Purpose and Objectives</h2>
         <p>
             This Infographics Dashboard for Data Sharing platform is designed to provide a centralized, easy-to-understand overview 
-            of public health surveillance and emergency data. The primary goal is to support decision-makers with clear, actionable insights 
-            and to make accurate information available for partner organizations so they can implement appropriate measures effectively.
+            of public health surveillance and emergency data...
         </p>
         <p>
-            The platform uses interactive infographics, charts, and visual summaries to simplify complex data, 
-            making it easy to interpret, share, and utilize for informed decision-making. 
-            It serves as an educational tool, a portfolio showcase, and a practical dashboard for data visualization enthusiasts.
+            The platform uses interactive infographics, charts, and visual summaries to simplify complex data...
         </p>
 
-        <!-- Creator Info -->
         <div class="creator">
-            <img src="images/doc221.jpg" alt="Mr. Negusu GEBRMICHAEL">
+            <img src="images/negusu.jpg" alt="Mr. Negusu GEBRMICHAEL">
             <div class="creator-info">
                 <h2>About the Developer</h2>
                 <p>
-                    Mr. Negusu GEBRMICHAEL is the developer and designer of this dashboard. 
-                    With expertise in HTML, CSS, and data visualization, he created this platform 
-                    to showcase his skills and provide a useful tool for public health decision-making.
-                    He is also a Data Scientist, GIS Expert and International Applied Epidemiology
+                    Mr. Negusu GEBRMICHAEL is the developer and designer...
                 </p>
                 <p>
                     Contact: <a href="mailto:negusuworkugm@gmail.com">negusuworkugm@gmail.com</a>
@@ -135,7 +128,37 @@
         </div>
     </div>
 
-<!-- Footer -->
-<div class="footer" style="font-size: 1.5rem; color: #3107ec; font-weight: bold; margin: 50px 0 30px 0;">
-    Name: Mr. Negusu GEBRMICHAEL | Email: <a href="mailto:negusuworkugm@gmail.com" style="color:#e62b1e; text-decoration:none;">negusuworkugm@gmail.com</a> | Date of Production: November, 2025
-</div>
+    <!-- Footer -->
+    <div class="footer" style="font-size: 1.5rem; color: #3107ec; font-weight: bold;">
+        Name: Mr. Negusu GEBRMICHAEL | Email: 
+        <a href="mailto:negusuworkugm@gmail.com" style="color:#e62b1e;">negusuworkugm@gmail.com</a> 
+        | Date of Production: November, 2025
+    </div>
+
+    <!-- Unified Login/Logout Panel -->
+    <div id="authPanel" style="position:fixed;top:15px;right:20px;background:#ffd700;padding:10px 15px;border-radius:10px;font-weight:bold;box-shadow:0 4px 10px rgba(0,0,0,0.2);z-index:999;">
+        <span id="authContent"></span>
+    </div>
+
+    <script>
+    function renderAuthPanel() {
+        const user = localStorage.getItem('loggedInUser');
+        const authContent = document.getElementById('authContent');
+        
+        if(user) {
+            authContent.innerHTML = `Welcome, ${user} | <a href="#" id="logoutBtn" style="color:#1829e6;font-weight:bold;">Logout</a>`;
+            
+            document.getElementById('logoutBtn').onclick = function() {
+                localStorage.removeItem('loggedInUser');
+                window.location.href = 'login.html';
+            };
+        } else {
+            authContent.innerHTML = `<a href="login.html" style="color:#1829e6;font-weight:bold;">Login</a>`;
+        }
+    }
+
+    window.onload = renderAuthPanel;
+    </script>
+
+</body>
+</html>

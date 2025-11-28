@@ -7,8 +7,10 @@
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
- <!-- External CSS -->
+
+    <!-- External CSS -->
     <link rel="stylesheet" href="styles.css">
+
     <style>
         body {
             margin:0;
@@ -99,6 +101,19 @@
             color:#e62b1e;
             text-decoration:none;
         }
+
+        /* Auth Panel */
+        #authPanel {
+            position:fixed;
+            top:15px;
+            right:20px;
+            background:#ffd700;
+            padding:10px 15px;
+            border-radius:10px;
+            font-weight:bold;
+            box-shadow:0 4px 10px rgba(0,0,0,0.2);
+            z-index:999;
+        }
     </style>
 </head>
 <body>
@@ -111,14 +126,18 @@
         <a href="contact.html">Contact</a>
     </nav>
 
+    <!-- Auth Panel -->
+    <div id="authPanel">
+        <span id="authContent"></span>
+    </div>
+
     <!-- Heading -->
     <h1>Contact Us</h1>
 
-    <!-- Intro Text -->
-   <p style="text-align:center;">
-    Reach out with your feedback, questions, or collaboration ideas. Fill out the form below or email directly<br>
-    to obtain more analyzed data and/or the methods and materials used during the data analysis and mapping.
-</p>
+    <p>
+        Reach out with your feedback, questions, or collaboration ideas.<br>
+        You may also email directly for detailed analysis, methods, or mapping materials.
+    </p>
 
     <!-- Contact Form -->
     <div class="form-container">
@@ -138,13 +157,39 @@
 
     <!-- Mailto Link -->
     <div class="mailto-link">
-        Or email directly: <a href="mailto:negusuworkugm@gmail.com">negusuworkugm@gmail.com</a>
+        Or email directly:  
+        <a href="mailto:negusuworkugm@gmail.com">negusuworkugm@gmail.com</a>
     </div>
 
     <!-- Footer -->
     <div class="footer">
-        Name: Mr. Negusu GEBRMICHAEL | Email: <a href="mailto:negusuworkugm@gmail.com">negusuworkugm@gmail.com</a> | Date of Production: November, 2025
+        Name: Mr. Negusu GEBRMICHAEL |  
+        Email: <a href="mailto:negusuworkugm@gmail.com">negusuworkugm@gmail.com</a> |  
+        Date of Production: November, 2025
     </div>
+
+    <!-- Clean Authentication Script -->
+    <script>
+    function renderAuthPanel() {
+        const user = localStorage.getItem('loggedInUser');
+        const authContent = document.getElementById('authContent');
+
+        if (user) {
+            authContent.innerHTML = `Welcome, ${user} | 
+                <a href="#" id="logoutBtn" style="color:#1829e6;font-weight:bold;">Logout</a>`;
+
+            document.getElementById('logoutBtn').onclick = function () {
+                localStorage.removeItem('loggedInUser');
+                window.location.href = 'login.html';
+            };
+        } else {
+            authContent.innerHTML = 
+                `<a href="login.html" style="color:#1829e6;font-weight:bold;">Login</a>`;
+        }
+    }
+
+    window.onload = renderAuthPanel;
+    </script>
 
 </body>
 </html>
